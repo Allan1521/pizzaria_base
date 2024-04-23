@@ -1,4 +1,6 @@
 let modalQtd;
+let cart = [];
+let modalKey = 0;
 
 
 /* -------------------EXIBE INFORMAÇÕES DA PIZZAS------------------ */
@@ -24,6 +26,8 @@ pizzaJson.map((item, index) => {
         event.preventDefault();
 
         modalQtd = 1;
+        modalKey = index;
+
         let key = event.target.closest('.pizza-item').getAttribute('data-key');
         console.log(pizzaJson[key]);
 
@@ -93,10 +97,34 @@ document.querySelector('.pizzaInfo--qtmais').addEventListener('click', () => {
 
 document.querySelector('.pizzaInfo--qtmenos').addEventListener('click', () => {
 
-    if (modalQtd >1){
+    if (modalQtd > 1) {
         modalQtd--;
     }
 
     document.querySelector('.pizzaInfo--qt').innerHTML = modalQtd;
 });
 //document.querySelector('.pizzaInfo--cancelButton').addEventListener('click',(event=>{}))
+
+//----------------------- TAMANHOS DAS PIZZAS--------------------------------------
+//Selecionando todos os elementos pizzaInfo--size pegando o tamnahoda pizza e a posição dos elementos
+//forEach == estrutura de repetição utilizada principalmente a parte que percorre um vetor ou uma coleção de dados
+//['pizzaInfo--size',pizzaInfo--size', 'pizzainfo--size']
+document.querySelectorAll('.pizzaInfo--size').forEach((pizzaSize, position) => {
+    //sempre que em um sistema tivermos que selecionar uma opção diferente e uma opção anterior  estiver selecionada, devemos primeiro tirar a seleção de todas as opções anteriores e só depois selecionar a nova opção que o usuário selecionou.
+    pizzaSize.addEventListener('click', (event) => {
+        //removendo a classe slecionada dos tamanhos de pizza, assim garatimos que nenhuma pizza, assim garatimos que nenhuma pizza estará selecionando antes do usuário selecionar um tamanho
+        document.querySelector('.pizzaInfo--size.selected').classList.remove('selected')
+        //adicionando a classe selected ao tamanho que o usuário está clicando.
+        pizzaSize.classList.add('selected')
+    })
+})
+
+//-----------------------BOTÃO ADICIONAR AO CARRINHO-------------------
+
+document.querySelector('.pizzaInfo--addButton').addEventListener('click', () => {
+    let size = parseInt(document.querySelector('.pizzaInfo--size.selected').getAttribute(' data-key'));
+
+    let identifier = 
+
+    
+})
